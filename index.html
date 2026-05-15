@@ -115,10 +115,25 @@ section{padding:6rem 2rem}
 .exp-tech{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--gray-100)}
 .exp-tech span{font-family:var(--font-mono);font-size:0.72rem;padding:0.25rem 0.625rem;background:var(--gray-100);border:1px solid var(--gray-200);border-radius:100px;color:var(--gray-600)}
 
+/* CERTIFICATES */
+#certificates{background:var(--white)}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.cert-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:1.75rem;transition:var(--transition);display:flex;flex-direction:column;min-height:260px;position:relative;overflow:hidden}
+.cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--black);transform:scaleX(0);transform-origin:left;transition:var(--transition)}
+.cert-card:hover{border-color:var(--gray-500);box-shadow:0 18px 42px rgba(0,0,0,0.12);transform:translateY(-6px)}
+.cert-card:hover::before{transform:scaleX(1)}
+.cert-meta{font-family:var(--font-mono);font-size:0.7rem;color:var(--gray-400);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+.cert-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--black);line-height:1.25;margin-bottom:0.75rem}
+.cert-desc{font-size:0.875rem;color:var(--gray-500);line-height:1.7;margin-bottom:1.25rem;flex:1}
+.cert-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem}
+.cert-download{display:inline-flex;align-items:center;gap:0.375rem;font-size:0.8rem;font-weight:500;color:var(--white);background:var(--black);text-decoration:none;border:1px solid var(--black);border-radius:var(--radius-sm);padding:0.55rem 1rem;transition:var(--transition);align-self:flex-start;font-family:var(--font-mono)}
+.cert-download:hover{background:transparent;color:var(--black);transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,0.12)}
+
 /* PROJECTS */
 #projects{background:var(--white)}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
 .project-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:1.75rem;transition:var(--transition);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.project-card[data-live-url]{cursor:pointer}
 .project-card:hover{border-color:var(--gray-500);box-shadow:0 18px 42px rgba(0,0,0,0.14);transform:translateY(-6px)}
 .project-number{font-family:var(--font-mono);font-size:0.7rem;color:var(--gray-300);margin-bottom:1rem;letter-spacing:0.1em}
 .project-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--black);margin-bottom:0.75rem;letter-spacing:-0.01em}
@@ -126,6 +141,7 @@ section{padding:6rem 2rem}
 .project-highlight{font-size:0.78rem;color:var(--gray-700);background:var(--gray-100);border-radius:var(--radius-sm);padding:0.5rem 0.75rem;margin-bottom:1.25rem;font-family:var(--font-mono);border:1px solid var(--gray-200)}
 .project-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem}
 .stack-tag{font-family:var(--font-mono);font-size:0.68rem;padding:0.2rem 0.5rem;background:transparent;border:1px solid var(--gray-200);border-radius:100px;color:var(--gray-500)}
+.project-actions{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:auto}
 .project-link{display:inline-flex;align-items:center;gap:0.375rem;font-size:0.8rem;font-weight:500;color:var(--black);text-decoration:none;border:1px solid var(--gray-200);border-radius:var(--radius-sm);padding:0.5rem 1rem;transition:var(--transition);align-self:flex-start;font-family:var(--font-mono)}
 .project-link:hover{background:var(--black);color:var(--white);border-color:var(--black);transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,0.14)}
 
@@ -192,6 +208,7 @@ footer span{color:rgba(255,255,255,0.15)}
   .projects-grid{grid-template-columns:1fr}
   .services-grid{grid-template-columns:1fr}
   .skills-grid{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -204,6 +221,7 @@ footer span{color:rgba(255,255,255,0.15)}
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero" onclick="closeMenu()">Home</a></li>
       <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#certificates" onclick="closeMenu()">Certificates</a></li>
       <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
       <li><a href="#profiles" onclick="closeMenu()">Profiles</a></li>
       <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
@@ -387,7 +405,7 @@ footer span{color:rgba(255,255,255,0.15)}
           <div class="exp-title">Software Development Intern</div>
           <div class="exp-company">Technical Hub Pvt. Ltd.</div>
         </div>
-        <div class="exp-period">Sept 2023 — Nov 2024</div>
+        <div class="exp-period">May 5, 2025 — May 5, 2026</div>
       </div>
       <ul class="exp-list">
         <li>Worked on real-world enterprise applications across the full development lifecycle, from requirements gathering to deployment.</li>
@@ -403,16 +421,83 @@ footer span{color:rgba(255,255,255,0.15)}
   </div>
 </section>
 
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">04 — Courses & Certificates</div>
+      <h2 class="section-title">Verified Learning</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-meta">MongoDB · 2026</div>
+        <div class="cert-title">MongoDB Associate Developer</div>
+        <p class="cert-desc">Official MongoDB credential recognizing developer-level understanding of MongoDB application development and document database concepts.</p>
+        <div class="cert-tags">
+          <span class="stack-tag">MongoDB</span><span class="stack-tag">Databases</span><span class="stack-tag">NoSQL</span>
+        </div>
+        <a href="certificates/MongoDBAssociateDeveloper_Badge20260505-32-h5m0l9.pdf" class="cert-download" download>Download Certificate ↓</a>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:0.07s">
+        <div class="cert-meta">Oracle University · 2025</div>
+        <div class="cert-title">Java Certified Foundations Associate</div>
+        <p class="cert-desc">Oracle certification validating foundational Java programming knowledge, object-oriented concepts, and core language fundamentals.</p>
+        <div class="cert-tags">
+          <span class="stack-tag">Java</span><span class="stack-tag">OOP</span><span class="stack-tag">Programming</span>
+        </div>
+        <a href="certificates/eCertificate-3.pdf" class="cert-download" download>Download Certificate ↓</a>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:0.14s">
+        <div class="cert-meta">NPTEL · IIT Guwahati</div>
+        <div class="cert-title">Design & Implementation of Human-Computer Interfaces</div>
+        <p class="cert-desc">NPTEL certification in HCI covering interface design, usability, interaction principles, and user-centered software experience.</p>
+        <div class="cert-tags">
+          <span class="stack-tag">HCI</span><span class="stack-tag">UX</span><span class="stack-tag">UI Design</span>
+        </div>
+        <a href="certificates/Design &amp; Implementation of Human-Computer Interfaces.pdf" class="cert-download" download>Download Certificate ↓</a>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:0.21s">
+        <div class="cert-meta">Cisco Networking Academy</div>
+        <div class="cert-title">JavaScript Essentials 2</div>
+        <p class="cert-desc">Student-level credential covering JavaScript objects, asynchronous programming, advanced functions, and problem solving.</p>
+        <div class="cert-tags">
+          <span class="stack-tag">JavaScript</span><span class="stack-tag">Frontend</span><span class="stack-tag">Algorithms</span>
+        </div>
+        <a href="certificates/JavaScriptEssentials2Update20260515-31-p3jx0b.pdf" class="cert-download" download>Download Certificate ↓</a>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:0.28s">
+        <div class="cert-meta">Cisco Networking Academy</div>
+        <div class="cert-title">Python Essentials 1</div>
+        <p class="cert-desc">Credential focused on Python 3 fundamentals, basic problem solving, debugging, and programming workflow foundations.</p>
+        <div class="cert-tags">
+          <span class="stack-tag">Python</span><span class="stack-tag">Programming</span><span class="stack-tag">Debugging</span>
+        </div>
+        <a href="certificates/PythonEssentials1Update20260410-31-u9itxg.pdf" class="cert-download" download>Download Certificate ↓</a>
+      </div>
+      <div class="cert-card reveal" style="transition-delay:0.35s">
+        <div class="cert-meta">LinkedIn Learning</div>
+        <div class="cert-title">React Essential Training</div>
+        <p class="cert-desc">Course completion covering React.js fundamentals, component-based interfaces, and modern front-end development practices.</p>
+        <div class="cert-tags">
+          <span class="stack-tag">React</span><span class="stack-tag">Web Development</span><span class="stack-tag">Frontend</span>
+        </div>
+        <a href="certificates/CertificateOfCompletion_React Essential Training.pdf" class="cert-download" download>Download Certificate ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-label">04 — Projects</div>
+      <div class="section-label">05 — Projects</div>
       <h2 class="section-title">Selected Work</h2>
       <div class="section-line"></div>
     </div>
     <div class="projects-grid">
-      <div class="project-card reveal">
+      <div class="project-card reveal" data-live-url="https://blood-donation-web-gamma.vercel.app">
         <div class="project-number">001</div>
         <div class="project-title">AU-BloodConnect</div>
         <p class="project-desc">A comprehensive blood donation platform connecting donors and recipients with intelligent matching and real-time notifications.</p>
@@ -421,9 +506,12 @@ footer span{color:rgba(255,255,255,0.15)}
           <span class="stack-tag">React</span><span class="stack-tag">Node.js</span>
           <span class="stack-tag">MongoDB</span><span class="stack-tag">Express</span>
         </div>
-        <a href="https://github.com/BollareddyPranoyRaj/BloodDonationWeb" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+        <div class="project-actions">
+          <a href="https://blood-donation-web-gamma.vercel.app" class="project-link" target="_blank" rel="noopener noreferrer">Live Site →</a>
+          <a href="https://github.com/BollareddyPranoyRaj/BloodDonationWeb" class="project-link" target="_blank" rel="noopener noreferrer">GitHub →</a>
+        </div>
       </div>
-      <div class="project-card reveal" style="transition-delay:0.07s">
+      <div class="project-card reveal" style="transition-delay:0.07s" data-live-url="https://expo.dev/accounts/bollareddypranoyraj/projects/resale-app/builds/b6692b02-3858-4143-9056-a4e28e47821b">
         <div class="project-number">002</div>
         <div class="project-title">Resale Price Estimator</div>
         <p class="project-desc">ML-powered tool that predicts the resale value of products based on condition, age, and market trends with high accuracy.</p>
@@ -432,21 +520,13 @@ footer span{color:rgba(255,255,255,0.15)}
           <span class="stack-tag">Python</span><span class="stack-tag">scikit-learn</span>
           <span class="stack-tag">Flask</span><span class="stack-tag">React</span>
         </div>
-        <a href="https://github.com/BollareddyPranoyRaj/resale-price-estimator" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
-      </div>
-      <div class="project-card reveal" style="transition-delay:0.14s">
-        <div class="project-number">003</div>
-        <div class="project-title">Multi-Tenant SaaS Platform</div>
-        <p class="project-desc">Secure multi-tenant architecture with complete data isolation, custom domains, and per-tenant billing and configuration.</p>
-        <div class="project-highlight">Secure tenant isolation · Scalable architecture</div>
-        <div class="project-stack">
-          <span class="stack-tag">Node.js</span><span class="stack-tag">PostgreSQL</span>
-          <span class="stack-tag">JWT</span><span class="stack-tag">Docker</span>
+        <div class="project-actions">
+          <a href="https://expo.dev/accounts/bollareddypranoyraj/projects/resale-app/builds/b6692b02-3858-4143-9056-a4e28e47821b" class="project-link" target="_blank" rel="noopener noreferrer">Live Build →</a>
+          <a href="https://github.com/BollareddyPranoyRaj/resale-price-estimator" class="project-link" target="_blank" rel="noopener noreferrer">GitHub →</a>
         </div>
-        <a href="https://github.com/BollareddyPranoyRaj/Multi-Tenant-Saas-platform" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
       </div>
-      <div class="project-card reveal" style="transition-delay:0.21s">
-        <div class="project-number">004</div>
+      <div class="project-card reveal" style="transition-delay:0.21s" data-live-url="https://onine-compiler-jsot5o6to-bollareddypranoyraj1s-projects.vercel.app">
+        <div class="project-number">003</div>
         <div class="project-title">Online Compiler</div>
         <p class="project-desc">Browser-based multi-language code execution environment with sandboxed runtime, I/O handling, and syntax highlighting.</p>
         <div class="project-highlight">Multi-language · Sandboxed execution</div>
@@ -454,10 +534,13 @@ footer span{color:rgba(255,255,255,0.15)}
           <span class="stack-tag">React</span><span class="stack-tag">Node.js</span>
           <span class="stack-tag">Docker</span><span class="stack-tag">Monaco Editor</span>
         </div>
-        <a href="https://github.com/BollareddyPranoyRaj/onine-compiler" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+        <div class="project-actions">
+          <a href="https://onine-compiler-jsot5o6to-bollareddypranoyraj1s-projects.vercel.app" class="project-link" target="_blank" rel="noopener noreferrer">Live Site →</a>
+          <a href="https://github.com/BollareddyPranoyRaj/onine-compiler" class="project-link" target="_blank" rel="noopener noreferrer">GitHub →</a>
+        </div>
       </div>
       <div class="project-card reveal" style="transition-delay:0.28s">
-        <div class="project-number">005</div>
+        <div class="project-number">004</div>
         <div class="project-title">EvntGo Web</div>
         <p class="project-desc">Event discovery and management web platform with polished React UI, admin authentication, and event scheduling.</p>
         <div class="project-highlight">Admin dashboard · React UI</div>
@@ -475,7 +558,7 @@ footer span{color:rgba(255,255,255,0.15)}
 <section id="profiles">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-label">05 — Coding Profiles</div>
+      <div class="section-label">06 — Coding Profiles</div>
       <h2 class="section-title">Problem Solving Journey</h2>
       <div class="section-line"></div>
     </div>
@@ -512,7 +595,7 @@ footer span{color:rgba(255,255,255,0.15)}
 <section id="contact">
   <div class="section-inner">
     <div class="reveal">
-      <div class="section-label">06 — Contact</div>
+      <div class="section-label">07 — Contact</div>
       <h2 class="section-title">Get in Touch</h2>
       <div class="section-line"></div>
     </div>
@@ -588,6 +671,13 @@ const observer = new IntersectionObserver(entries => {
 },{threshold:0.12});
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.querySelectorAll('.project-card[data-live-url]').forEach(card => {
+  card.addEventListener('click', event => {
+    if (event.target.closest('a')) return;
+    window.open(card.dataset.liveUrl, '_blank', 'noopener,noreferrer');
+  });
+});
 
 const form = document.getElementById('contact-form');
 const submitBtn = form.querySelector('button[type="submit"]');
