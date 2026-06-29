@@ -126,8 +126,8 @@ section{padding:6rem 2rem}
 .cert-title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--black);line-height:1.25;margin-bottom:0.75rem}
 .cert-desc{font-size:0.875rem;color:var(--gray-500);line-height:1.7;margin-bottom:1.25rem;flex:1}
 .cert-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem}
-.cert-download{display:inline-flex;align-items:center;gap:0.375rem;font-size:0.8rem;font-weight:500;color:var(--white);background:var(--black);text-decoration:none;border:1px solid var(--black);border-radius:var(--radius-sm);padding:0.55rem 1rem;transition:var(--transition);align-self:flex-start;font-family:var(--font-mono)}
-.cert-download:hover{background:transparent;color:var(--black);transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,0.12)}
+.cert-view{display:inline-flex;align-items:center;gap:0.375rem;font-size:0.8rem;font-weight:500;color:var(--white);background:var(--black);text-decoration:none;border:1px solid var(--black);border-radius:var(--radius-sm);padding:0.55rem 1rem;transition:var(--transition);align-self:flex-start;font-family:var(--font-mono)}
+.cert-view:hover{background:transparent;color:var(--black);transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,0.12)}
 
 /* PROJECTS */
 #projects{background:var(--white)}
@@ -289,7 +289,7 @@ footer span{color:rgba(255,255,255,0.15)}
       <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
       <li><a href="#profiles" onclick="closeMenu()">Profiles</a></li>
       <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
-      <li><a href="Pranoy_Resume_Updated_1.pdf" class="btn-resume" target="_blank" download onclick="closeMenu()">Resume ↗</a></li>
+      <li><a href="Pranoy_Resume_Updated_1.pdf" class="btn-resume" target="_blank" rel="noopener noreferrer" onclick="closeMenu()">View Resume ↗</a></li>
     </ul>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -311,7 +311,7 @@ footer span{color:rgba(255,255,255,0.15)}
     <div class="hero-divider"></div>
     <p class="hero-intro">B.Tech Computer Science student specializing in scalable web applications and backend engineering.</p>
     <div class="hero-actions">
-      <a href="Pranoy_Resume_Updated_1.pdf" class="btn-primary" target="_blank" rel="noopener noreferrer" download>Download Resume</a>
+      <a href="Pranoy_Resume_Updated_1.pdf" class="btn-primary" target="_blank" rel="noopener noreferrer">View Resume ↗</a>
       <a href="#projects" class="btn-outline">View Projects →</a>
     </div>
     <div class="hero-social">
@@ -510,7 +510,7 @@ footer span{color:rgba(255,255,255,0.15)}
         <div class="cert-tags">
           <span class="stack-tag">MongoDB</span><span class="stack-tag">Databases</span><span class="stack-tag">NoSQL</span>
         </div>
-        <a href="certificates/23p31a0508.pdf" class="cert-download" download>Download Certificate ↓</a>
+        <a href="certificates/23p31a0508.pdf" class="cert-view" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
       <div class="cert-card reveal" style="transition-delay:0.07s">
         <div class="cert-meta">Microsoft Learn · 2026</div>
@@ -519,7 +519,7 @@ footer span{color:rgba(255,255,255,0.15)}
         <div class="cert-tags">
           <span class="stack-tag">GitHub</span><span class="stack-tag">Git</span><span class="stack-tag">Version Control</span>
         </div>
-        <a href="certificates/Credentials - PranoyRajBollareddy-1167 _ Microsoft Learn copy.pdf" class="cert-download" download>Download Certificate ↓</a>
+        <a href="certificates/Credentials - PranoyRajBollareddy-1167 _ Microsoft Learn copy.pdf" class="cert-view" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
       <div class="cert-card reveal" style="transition-delay:0.14s">
         <div class="cert-meta">Oracle University · 2025</div>
@@ -528,7 +528,7 @@ footer span{color:rgba(255,255,255,0.15)}
         <div class="cert-tags">
           <span class="stack-tag">Java</span><span class="stack-tag">OOP</span><span class="stack-tag">Programming</span>
         </div>
-        <a href="certificates/eCertificate-3.pdf" class="cert-download" download>Download Certificate ↓</a>
+        <a href="certificates/eCertificate-3.pdf" class="cert-view" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
       <div class="cert-card reveal" style="transition-delay:0.21s">
         <div class="cert-meta">NPTEL · IIT Guwahati</div>
@@ -537,7 +537,7 @@ footer span{color:rgba(255,255,255,0.15)}
         <div class="cert-tags">
           <span class="stack-tag">HCI</span><span class="stack-tag">UX</span><span class="stack-tag">UI Design</span>
         </div>
-        <a href="certificates/Design &amp; Implementation of Human-Computer Interfaces.pdf" class="cert-download" download>Download Certificate ↓</a>
+        <a href="certificates/Design &amp; Implementation of Human-Computer Interfaces.pdf" class="cert-view" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
       <div class="cert-card reveal" style="transition-delay:0.28s">
         <div class="cert-meta">Cisco Networking Academy</div>
@@ -546,7 +546,7 @@ footer span{color:rgba(255,255,255,0.15)}
         <div class="cert-tags">
           <span class="stack-tag">JavaScript</span><span class="stack-tag">Frontend</span><span class="stack-tag">Algorithms</span>
         </div>
-        <a href="certificates/JavaScriptEssentials2Update20260515-31-p3jx0b.pdf" class="cert-download" download>Download Certificate ↓</a>
+        <a href="certificates/JavaScriptEssentials2Update20260515-31-p3jx0b.pdf" class="cert-view" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
       <div class="cert-card reveal" style="transition-delay:0.35s">
         <div class="cert-meta">Cisco Networking Academy</div>
@@ -555,7 +555,7 @@ footer span{color:rgba(255,255,255,0.15)}
         <div class="cert-tags">
           <span class="stack-tag">Python</span><span class="stack-tag">Programming</span><span class="stack-tag">Debugging</span>
         </div>
-        <a href="certificates/PythonEssentials1Update20260410-31-u9itxg.pdf" class="cert-download" download>Download Certificate ↓</a>
+        <a href="certificates/PythonEssentials1Update20260410-31-u9itxg.pdf" class="cert-view" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
       <div class="cert-card reveal" style="transition-delay:0.42s">
         <div class="cert-meta">Certiport · Pearson VUE · 2024</div>
@@ -564,7 +564,7 @@ footer span{color:rgba(255,255,255,0.15)}
         <div class="cert-tags">
           <span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">Web Development</span>
         </div>
-        <a href="certificates/HTML and CSS.pdf" class="cert-download" download>Download Certificate ↓</a>
+        <a href="certificates/HTML and CSS.pdf" class="cert-view" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
       </div>
     </div>
   </div>
@@ -621,16 +621,20 @@ footer span{color:rgba(255,255,255,0.15)}
           <a href="https://github.com/BollareddyPranoyRaj/onine-compiler" class="project-link" target="_blank" rel="noopener noreferrer">GitHub →</a>
         </div>
       </div>
-      <div class="project-card reveal" style="transition-delay:0.28s">
+      <div class="project-card reveal" style="transition-delay:0.28s" data-live-url="http://52.22.227.138:8501/">
         <div class="project-number">004</div>
-        <div class="project-title">EvntGo Web</div>
-        <p class="project-desc">Event discovery and management web platform with polished React UI, admin authentication, and event scheduling.</p>
-        <div class="project-highlight">Admin dashboard · React UI</div>
+        <div class="project-title">Lemma ZK Tracer</div>
+        <p class="project-desc">Verifiable due diligence platform that anchors AI-extracted financial metrics to exact PDF source passages using cryptographic provenance.</p>
+        <div class="project-highlight">SHA-256 provenance · Lemma + ChromaDB fallback</div>
         <div class="project-stack">
-          <span class="stack-tag">React</span><span class="stack-tag">Tailwind</span>
-          <span class="stack-tag">Node.js</span><span class="stack-tag">MongoDB</span>
+          <span class="stack-tag">FastAPI</span><span class="stack-tag">Streamlit</span>
+          <span class="stack-tag">GPT-4o</span><span class="stack-tag">ChromaDB</span>
+          <span class="stack-tag">OpenTelemetry</span>
         </div>
-        <a href="https://github.com/EvntGo/evntgo-web" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+        <div class="project-actions">
+          <a href="http://52.22.227.138:8501/" class="project-link" target="_blank" rel="noopener noreferrer">Live App →</a>
+          <a href="https://github.com/BollareddyPranoyRaj/lemma-zk-tracer" class="project-link" target="_blank" rel="noopener noreferrer">GitHub →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -649,7 +653,7 @@ footer span{color:rgba(255,255,255,0.15)}
         <div class="service-icon">◈</div>
         <div class="service-title">LeetCode</div>
         <p class="service-desc">Solved 120 problems across core data structures and algorithms, building consistency in interview-style problem solving.</p>
-        <a href="https://leetcode.com/u/pranoy2005/" class="project-link" target="_blank" rel="noopener noreferrer">View Profile →</a>
+        <a href="https://leetcode.com/u/PranoyRaj/" class="project-link" target="_blank" rel="noopener noreferrer">View Profile →</a>
       </div>
       <div class="service-card reveal" style="transition-delay:0.07s">
         <div class="service-icon">◻</div>
@@ -700,8 +704,8 @@ footer span{color:rgba(255,255,255,0.15)}
           </div>
           <div class="contact-cta">
             <p class="contact-cta-text">Interested in working together?</p>
-            <a href="Pranoy_Resume_Updated_1.pdf" class="btn-primary" target="_blank" rel="noopener noreferrer" download style="display:inline-block;text-align:center;padding:0.75rem 1.5rem;">
-              Download Resume ↓
+            <a href="Pranoy_Resume_Updated_1.pdf" class="btn-primary" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-align:center;padding:0.75rem 1.5rem;">
+              View Resume ↗
             </a>
           </div>
         </div>
