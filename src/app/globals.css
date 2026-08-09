@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-display), serif;
+  --font-body: var(--font-body), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+
+  --color-black: #0a0a0a;
+  --color-white: #fafafa;
+  --color-gray-50: #fbfbf9;
+  --color-gray-100: #f5f5f3;
+  --color-gray-200: #e8e8e4;
+  --color-gray-300: #d0d0cc;
+  --color-gray-400: #a8a8a4;
+  --color-gray-500: #787874;
+  --color-gray-600: #4a4a46;
+  --color-gray-700: #2e2e2c;
+  --color-gray-800: #1c1c1a;
+  --color-gray-900: #0f0f0e;
+
+  --animate-scroll-down: scrollDown 2s ease infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(50px, -70px) scale(1.15);
+  }
+  66% {
+    transform: translate(-40px, 40px) scale(0.9);
+  }
+}
+
+.animate-float-1 {
+  animation: float-slow 28s ease-in-out infinite;
+}
+.animate-float-2 {
+  animation: float-slow 38s ease-in-out infinite 2s;
+}
+.animate-float-3 {
+  animation: float-slow 32s ease-in-out infinite 5s;
+}
+.animate-float-4 {
+  animation: float-slow 42s ease-in-out infinite 1s;
+}
+
+/* Base custom styles */
+body {
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+::-webkit-scrollbar-thumb {
+  background: #d0d0cc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a4;
+}
+
+/* GSAP Horizontal Scroll Styles */
+.horizontal-scroll-container {
+  display: flex;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+.horizontal-panel {
+  flex-shrink: 0;
+  width: 450px;
+}
+
+@media (max-width: 768px) {
+  .horizontal-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+  }
+  
+  .horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .horizontal-panel {
+    width: 85%;
+    scroll-snap-align: center;
+  }
+}
