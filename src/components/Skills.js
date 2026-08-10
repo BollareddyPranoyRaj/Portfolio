@@ -1,8 +1,42 @@
 "use client";
-import React from "react";
-import { Terminal, Layout, Database, Code, Cpu } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Terminal, Layout, Database, Code, Cpu, ChevronDown } from "lucide-react";
 
 export default function Skills() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+    setTimeout(() => {
+      import("gsap/dist/ScrollTrigger").then(({ ScrollTrigger }) => {
+        ScrollTrigger.refresh();
+      });
+    }, 400);
+  };
+
+  useEffect(() => {
+    const handleOpen = (e) => {
+      if (e.detail === "skills") {
+        setIsOpen(true);
+      }
+    };
+    const handleHashChange = () => {
+      if (window.location.hash === "#skills") {
+        setIsOpen(true);
+      }
+    };
+    window.addEventListener("open-section", handleOpen);
+    window.addEventListener("hashchange", handleHashChange);
+    if (window.location.hash === "#skills") {
+      setIsOpen(true);
+    }
+    return () => {
+      window.removeEventListener("open-section", handleOpen);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
   const skillCategories = [
     {
       title: "Frameworks",
@@ -42,54 +76,78 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-24 px-6 relative z-10">
-      <div className="max-w-5xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-16">
-          <span className="font-mono text-xs text-gray-500 uppercase tracking-widest block mb-2">
-            02 — Skills
-          </span>
-          <h2 className="font-display font-bold text-3xl md:text-5xl text-white tracking-tight mb-4">
-            Technical Arsenal
-          </h2>
-          <div className="w-12 h-[2px] bg-white/20" />
-        </div>
+    <section id="skills" className="py-4 md:py-6 border-b border-white/5 relative z-10">
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Accordion Toggle Header */}
+        <button
+          onClick={toggleOpen}
+          className="w-full flex items-center justify-between py-6 text-left group cursor-pointer"
+        >
+          <div>
+            <span className="font-mono text-xs text-gray-500 uppercase tracking-widest block mb-2 transition-colors group-hover:text-indigo-400">
+              02 — Skills
+            </span>
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-white tracking-tight group-hover:text-white/90 transition-colors">
+              Technical Arsenal
+            </h2>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/15 transition-all duration-300">
+            <ChevronDown 
+              size={18} 
+              className={`text-gray-400 group-hover:text-white transition-transform duration-300 ${
+                isOpen ? "rotate-180" : ""
+              }`} 
+            />
+          </div>
+        </button>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {skillCategories.map((cat, index) => (
-            <div
-              key={index}
-              className={`group flex flex-col justify-between bg-white/[0.01] border border-white/5 rounded-2xl p-6 transition-all duration-500 hover:-translate-y-1 shadow-lg hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] ${cat.color} ${
-                index === 4 ? "lg:col-span-2" : ""
-              }`}
+        {/* Collapsible Content */}
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="overflow-hidden"
             >
-              <div>
-                {/* Category Header */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors duration-300">
-                    {cat.icon}
-                  </div>
-                  <h3 className="text-white text-sm font-semibold tracking-wide font-body">
-                    {cat.title}
-                  </h3>
-                </div>
+              <div className="pt-8 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                {skillCategories.map((cat, index) => (
+                  <div
+                    key={index}
+                    className={`group flex flex-col justify-between bg-white/[0.01] border border-white/5 rounded-2xl p-6 transition-all duration-500 hover:-translate-y-1 shadow-lg hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] ${cat.color} ${
+                      index === 4 ? "lg:col-span-2" : ""
+                    }`}
+                  >
+                    <div>
+                      {/* Category Header */}
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors duration-300">
+                          {cat.icon}
+                        </div>
+                        <h3 className="text-white text-sm font-semibold tracking-wide font-body">
+                          {cat.title}
+                        </h3>
+                      </div>
 
-                {/* Tags container */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {cat.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className={`font-mono text-[10px] md:text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full transition-all duration-300 ${cat.tagColor}`}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+                      {/* Tags container */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {cat.skills.map((skill) => (
+                          <span
+                            key={skill}
+                            className={`font-mono text-[10px] md:text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-1 rounded-full transition-all duration-300 ${cat.tagColor}`}
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          ))}
-        </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
