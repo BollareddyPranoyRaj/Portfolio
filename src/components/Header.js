@@ -60,6 +60,15 @@ export default function Header() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  const handleNavClick = (e, href) => {
+    if (href.startsWith("#")) {
+      const sectionId = href.substring(1);
+      // Dispatch a custom event to tell the collapsible section to open
+      const event = new CustomEvent("open-section", { detail: sectionId });
+      window.dispatchEvent(event);
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -82,6 +91,7 @@ export default function Header() {
             <li key={link.name}>
               <a
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={`text-sm tracking-wide transition-colors duration-200 ${
                   activeSection === link.href.substring(1)
                     ? "text-white font-medium border-b border-white/40 pb-1"
@@ -125,7 +135,10 @@ export default function Header() {
             <li key={link.name}>
               <a
                 href={link.href}
-                onClick={closeMenu}
+                onClick={(e) => {
+                  handleNavClick(e, link.href);
+                  closeMenu();
+                }}
                 className={`text-xl font-medium transition-colors ${
                   activeSection === link.href.substring(1)
                     ? "text-white font-bold"
