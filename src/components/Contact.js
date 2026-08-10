@@ -1,8 +1,42 @@
 "use client";
-import React from "react";
-import { Mail, Phone, MapPin, FileText } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Mail, Phone, MapPin, FileText, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Contact() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+    setTimeout(() => {
+      import("gsap/dist/ScrollTrigger").then(({ ScrollTrigger }) => {
+        ScrollTrigger.refresh();
+      });
+    }, 400);
+  };
+
+  useEffect(() => {
+    const handleOpen = (e) => {
+      if (e.detail === "contact") {
+        setIsOpen(true);
+      }
+    };
+    const handleHashChange = () => {
+      if (window.location.hash === "#contact") {
+        setIsOpen(true);
+      }
+    };
+    window.addEventListener("open-section", handleOpen);
+    window.addEventListener("hashchange", handleHashChange);
+    if (window.location.hash === "#contact") {
+      setIsOpen(true);
+    }
+    return () => {
+      window.removeEventListener("open-section", handleOpen);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
   const socialLinks = [
     {
       name: "GitHub",
@@ -45,106 +79,133 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-24 px-6 relative z-10">
-      <div className="max-w-5xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-16">
-          <span className="font-mono text-xs text-gray-500 uppercase tracking-widest block mb-2">
-            07 — Contact
-          </span>
-          <h2 className="font-display font-bold text-3xl md:text-5xl text-white tracking-tight mb-4">
-            Get in Touch
-          </h2>
-          <div className="w-12 h-[2px] bg-white/20" />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {/* Info Card */}
-          <div className="bg-white/[0.01] border border-white/5 rounded-2xl p-6 md:p-8 space-y-6 shadow-xl">
-            <div>
-              <h3 className="text-white text-lg md:text-xl font-bold font-body">
-                Bollareddy Pranoy Raj
-              </h3>
-              <p className="text-gray-500 text-xs font-mono mt-1">
-                Full Stack Developer · Problem Solver
-              </p>
-            </div>
-
-            <div className="space-y-4 pt-4 border-t border-white/5">
-              <div className="flex items-center gap-3 text-sm text-gray-400">
-                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
-                  <MapPin size={14} className="text-indigo-400" />
-                </div>
-                <span>Anaparthi, Andhra Pradesh, India</span>
-              </div>
-
-              <div className="flex items-center gap-3 text-sm text-gray-400">
-                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
-                  <Mail size={14} className="text-teal-400" />
-                </div>
-                <a href="mailto:bollareddypranoyraj@gmail.com" className="hover:text-white transition-colors">
-                  bollareddypranoyraj@gmail.com
-                </a>
-              </div>
-
-              <div className="flex items-center gap-3 text-sm text-gray-400">
-                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
-                  <Phone size={14} className="text-violet-400" />
-                </div>
-                <a href="tel:+919392645322" className="hover:text-white transition-colors">
-                  +91 93926 45322
-                </a>
-              </div>
-            </div>
-
-            <div className="pt-6 border-t border-white/5 text-center sm:text-left">
-              <p className="text-xs text-gray-500 font-mono mb-4">Interested in working together?</p>
-              <a
-                href="/BollareddyPranoyRaj-5.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-black hover:bg-transparent hover:text-white border border-white px-5 py-2.5 rounded-lg text-xs font-mono tracking-wide transition-all duration-300"
-              >
-                <FileText size={12} />
-                View Resume ↗
-              </a>
-            </div>
+    <section id="contact" className="py-4 md:py-6 border-b border-white/5 relative z-10">
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Accordion Toggle Header */}
+        <button
+          onClick={toggleOpen}
+          className="w-full flex items-center justify-between py-6 text-left group cursor-pointer"
+        >
+          <div>
+            <span className="font-mono text-xs text-gray-500 uppercase tracking-widest block mb-2 transition-colors group-hover:text-indigo-400">
+              07 — Contact
+            </span>
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-white tracking-tight group-hover:text-white/90 transition-colors">
+              Get in Touch
+            </h2>
           </div>
+          <div className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/15 transition-all duration-300">
+            <ChevronDown 
+              size={18} 
+              className={`text-gray-400 group-hover:text-white transition-transform duration-300 ${
+                isOpen ? "rotate-180" : ""
+              }`} 
+            />
+          </div>
+        </button>
 
-          {/* Social Links Card */}
-          <div className="bg-white/[0.01] border border-white/5 rounded-2xl p-6 md:p-8 space-y-6 shadow-xl">
-            <div>
-              <h3 className="text-white text-lg md:text-xl font-bold font-body">
-                Connect With Me
-              </h3>
-              <p className="text-gray-500 text-xs font-mono mt-1">
-                Professional & social networks
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-white/5">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-white/[0.01] hover:bg-white/[0.03] border border-white/5 hover:border-white/10 rounded-xl p-4 transition-all duration-300 group"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 group-hover:text-white transition-colors">
-                    {social.icon}
-                  </div>
+        {/* Collapsible Content */}
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div className="pt-8 pb-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                {/* Info Card */}
+                <div className="bg-white/[0.01] border border-white/5 rounded-2xl p-6 md:p-8 space-y-6 shadow-xl">
                   <div>
-                    <span className="text-white text-xs font-semibold block">{social.name}</span>
-                    <span className="text-gray-500 font-mono text-[9px] block mt-0.5 max-w-[140px] truncate">
-                      {social.handle}
-                    </span>
+                    <h3 className="text-white text-lg md:text-xl font-bold font-body">
+                      Bollareddy Pranoy Raj
+                    </h3>
+                    <p className="text-gray-500 text-xs font-mono mt-1">
+                      Full Stack Developer · Problem Solver
+                    </p>
                   </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+
+                  <div className="space-y-4 pt-4 border-t border-white/5">
+                    <div className="flex items-center gap-3 text-sm text-gray-400">
+                      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                        <MapPin size={14} className="text-indigo-400" />
+                      </div>
+                      <span>Anaparthi, Andhra Pradesh, India</span>
+                    </div>
+
+                    <div className="flex items-center gap-3 text-sm text-gray-400">
+                      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                        <Mail size={14} className="text-teal-400" />
+                      </div>
+                      <a href="mailto:bollareddypranoyraj@gmail.com" className="hover:text-white transition-colors">
+                        bollareddypranoyraj@gmail.com
+                      </a>
+                    </div>
+
+                    <div className="flex items-center gap-3 text-sm text-gray-400">
+                      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                        <Phone size={14} className="text-violet-400" />
+                      </div>
+                      <a href="tel:+919392645322" className="hover:text-white transition-colors">
+                        +91 93926 45322
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 border-t border-white/5 text-center sm:text-left">
+                    <p className="text-xs text-gray-500 font-mono mb-4">Interested in working together?</p>
+                    <a
+                      href="/BollareddyPranoyRaj-5.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-white text-black hover:bg-transparent hover:text-white border border-white px-5 py-2.5 rounded-lg text-xs font-mono tracking-wide transition-all duration-300"
+                    >
+                      <FileText size={12} />
+                      View Resume ↗
+                    </a>
+                  </div>
+                </div>
+
+                {/* Social Links Card */}
+                <div className="bg-white/[0.01] border border-white/5 rounded-2xl p-6 md:p-8 space-y-6 shadow-xl">
+                  <div>
+                    <h3 className="text-white text-lg md:text-xl font-bold font-body">
+                      Connect With Me
+                    </h3>
+                    <p className="text-gray-500 text-xs font-mono mt-1">
+                      Professional & social networks
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {socialLinks.map((social, index) => (
+                      <a
+                        key={index}
+                        href={social.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all group"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 group-hover:text-white transition-colors">
+                          {social.icon}
+                        </div>
+                        <div>
+                          <h4 className="text-white text-xs font-semibold font-body">
+                            {social.name}
+                          </h4>
+                          <p className="text-gray-500 text-[10px] font-mono mt-0.5 truncate max-w-[120px]">
+                            {social.handle}
+                          </p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
