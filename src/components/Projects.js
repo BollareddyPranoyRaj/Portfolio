@@ -62,12 +62,12 @@ export default function Projects() {
     },
     {
       number: "003",
-      title: "Multi-Tenant SaaS Platform",
-      description: "Production-ready project and task management SaaS with strict tenant isolation, JWT authentication, role-based access control, and subscription plan limits.",
-      highlight: "PostgreSQL · Supabase · pg connection pooling",
-      stack: ["Node.js", "Express", "PostgreSQL", "Supabase", "pg"],
-      live: "https://github.com/BollareddyPranoyRaj/Multi-Tenant-Saas-platform",
-      github: "https://github.com/BollareddyPranoyRaj/Multi-Tenant-Saas-platform",
+      title: "Lemma ZK Tracer",
+      description: "Verifiable due diligence platform that anchors AI-extracted financial metrics to exact PDF source passages using cryptographic provenance.",
+      highlight: "SHA-256 provenance · Lemma + ChromaDB fallback",
+      stack: ["FastAPI", "Streamlit", "GPT-4o", "ChromaDB", "OpenTelemetry"],
+      live: "https://lemma-zk-tracer.streamlit.app/",
+      github: "https://github.com/BollareddyPranoyRaj/lemma-zk-tracer",
     },
     {
       number: "004",
